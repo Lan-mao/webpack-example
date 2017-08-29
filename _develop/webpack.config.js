@@ -34,7 +34,7 @@ module.exports = function(env) {
   let config = {
     context: path.resolve(__dirname, '..'),
     entry: {
-      'quill.js': ['./node_modules/quill/quill.js'],
+      // 'quill.js': ['./node_modules/quill/quill.js'],
       'quill.core.js': ['./node_modules/quill/core.js'],
       'quill.core': './node_modules/quill/assets/core.styl',
       'quill.bubble': './node_modules/quill/assets/bubble.styl',
