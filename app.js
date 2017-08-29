@@ -17,4 +17,6 @@ Quill.register({
 });
 
 
-export default Quill;
+// export default Quill;
+
+module.exports = Quill;

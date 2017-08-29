@@ -15,6 +15,90 @@
 </head>
 <body>
 
+<!-- Create toolbar container -->
+<div id="ql-toolbar">
+    <span class="ql-formats">
+        <!-- Add font size dropdown -->
+        <select class="ql-size">
+            <option value="small">小号</option>
+            <!-- Note a missing, thus falsy value, is used to reset to default -->
+            <option selected value="normal">正常</option>
+            <option value="large">大号</option>
+            <option value="huge">特大</option>
+        </select>
+    </span>
+
+    <span class="ql-formats">
+    <!-- Add a bold button -->
+    <button class="ql-bold"></button>
+    <button class="ql-italic"></button>
+    <button class="ql-underline"></button>
+    <button class="ql-strike"></button>
+    </span>
+
+    <span class="ql-formats">
+        <select class="ql-color"><option selected="selected"></option><option
+                value="#e60000"></option><option value="#ff9900"></option><option value="#ffff00"></option><option
+                value="#008a00"></option><option value="#0066cc"></option><option value="#9933ff"></option><option
+                value="#ffffff"></option><option value="#facccc"></option><option value="#ffebcc"></option><option
+                value="#ffffcc"></option><option value="#cce8cc"></option><option value="#cce0f5"></option><option
+                value="#ebd6ff"></option><option value="#bbbbbb"></option><option value="#f06666"></option><option
+                value="#ffc266"></option><option value="#ffff66"></option><option value="#66b966"></option><option
+                value="#66a3e0"></option><option value="#c285ff"></option><option value="#888888"></option><option
+                value="#a10000"></option><option value="#b26b00"></option><option value="#b2b200"></option><option
+                value="#006100"></option><option value="#0047b2"></option><option value="#6b24b2"></option><option
+                value="#444444"></option><option value="#5c0000"></option><option value="#663d00"></option><option
+                value="#666600"></option><option value="#003700"></option><option value="#002966"></option><option
+                value="#3d1466"></option></select>
+        <select class="ql-background"><option value="#000000"></option><option
+                value="#e60000"></option><option value="#ff9900"></option><option value="#ffff00"></option><option
+                value="#008a00"></option><option value="#0066cc"></option><option value="#9933ff"></option><option
+                selected="selected"></option><option value="#facccc"></option><option value="#ffebcc"></option><option
+                value="#ffffcc"></option><option value="#cce8cc"></option><option value="#cce0f5"></option><option
+                value="#ebd6ff"></option><option value="#bbbbbb"></option><option value="#f06666"></option><option
+                value="#ffc266"></option><option value="#ffff66"></option><option value="#66b966"></option><option
+                value="#66a3e0"></option><option value="#c285ff"></option><option value="#888888"></option><option
+                value="#a10000"></option><option value="#b26b00"></option><option value="#b2b200"></option><option
+                value="#006100"></option><option value="#0047b2"></option><option value="#6b24b2"></option><option
+                value="#444444"></option><option value="#5c0000"></option><option value="#663d00"></option><option
+                value="#666600"></option><option value="#003700"></option><option value="#002966"></option><option
+                value="#3d1466"></option></select>
+    </span>
+    <span class="ql-formats">
+      <button class="ql-script" value="sub"></button>
+      <button class="ql-script" value="super"></button>
+    </span>
+    <span class="ql-formats">
+
+        <!-- Add font size dropdown -->
+        <select class="ql-header">
+            <option selected value="0">普通</option>
+            <option value="1">标题1</option>
+            <option value="2">标题2</option>
+            <option value="3">标题3</option>
+        </select>
+      <button class="ql-blockquote"></button>
+      <button class="ql-code-block"></button>
+    </span>
+    <span class="ql-formats">
+        <button class="ql-list" value="ordered"></button>
+        <button class="ql-list" value="bullet"></button>
+        <button class="ql-indent" value="-1"></button>
+        <button class="ql-indent" value="+1"></button>
+    </span>
+    <span class="ql-formats">
+        <button class="ql-direction" value="rtl"></button>
+        <select class="ql-align"><option selected="selected"></option><option
+                value="center"></option><option value="right"></option><option value="justify"></option></select>
+    </span>
+    <span class="ql-formats">
+        <button class="ql-link"></button>
+        <button class="ql-image"></button>
+        <button class="ql-video"></button>
+    </span>
+    <span class="ql-formats">
+        <button class="ql-clean"></button></span>
+</div>
 
 <!-- Create the editor container -->
 <div id="editor">
@@ -27,13 +111,49 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.js"></script>
-<script type="text/javascript" src="../dist/quill.core.js"></script>
+<script type="text/javascript" src="../dist/bundle.js"></script>
+<!--<script type="text/javascript" src="../dist/quill.js"></script>-->
 
 <!--<script src="https://cdn.quilljs.com/1.3.1/quill.js"></script>-->
 <script>
-    var quill = new Quill('#editor', {
+
+    var options = {
+        debug: 'warn',
+        modules: {
+            toolbar: {
+                container: "#ql-toolbar",
+                handlers: {
+                    link: function link(value) {
+                        if (value) {
+                            var range = this.quill.getSelection();
+                            if (range == null || range.length == 0) return;
+                            var preview = this.quill.getText(range);
+                            if (/^\S+@\S+\.\S+$/.test(preview) && preview.indexOf('mailto:') !== 0) {
+                                preview = 'mailto:' + preview;
+                            }
+                            var tooltip = this.quill.theme.tooltip;
+                            tooltip.textbox.setAttribute('data-link', "");
+                            tooltip.edit('link', preview);
+                        } else {
+                            this.quill.format('link', false);
+                        }
+                    },
+                    video: function video() {
+                        var tooltip = this.quill.theme.tooltip;
+                        tooltip.textbox.setAttribute('data-video', "");
+                        tooltip.edit('video');
+                    }
+
+                },
+            }
+        },
+        placeholder: '',
+        readOnly: false,
         theme: 'snow'
-    });
+    };
+
+    var quill = new Quill('#editor', options);
+
 </script>
 </body>
 </html>
