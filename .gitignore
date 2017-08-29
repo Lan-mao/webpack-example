@@ -1,2 +1,69 @@
-node_modules
-dist
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Grunt ###
+node_modules/
+
+### others ###
+package-lock.json
+temp/
+
+
+### from Old project ###
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+bin
+
+/myapplication.log
+
+### from spring-projects/spring-boot github repository ###
+*.sw?
+.#*
+*#
+*~
+/code
+.metadata
+.recommenders
+lib/
+target
+interpolated*.xml
+dependency-reduced-pom.xml
+build.log
+_site/
+.*.md.html
+manifest.yml
+settings.xml
+activemq-data
+overridedb.*
+*.jar
+!libs/*.jar
+.DS_Store
+dump.rdb
+transaction-logs
