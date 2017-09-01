@@ -1,16 +1,16 @@
 import extend from 'extend';
 import Emitter from 'quill/core/emitter';
-import BaseTheme, { BaseTooltip } from 'quill/themes/base';
+import BaseTheme, {BaseTooltip} from 'quill/themes/base';
 // import LinkBlot from 'quill/formats/link';
 import RdLink from '../formats/rdLink';
-import { Range } from 'quill/core/selection';
+import {Range} from 'quill/core/selection';
 import icons from 'quill/ui/icons';
 
 
 const TOOLBAR_CONFIG = [
-    [{ header: ['1', '2', '3', false] }],
+    [{header: ['1', '2', '3', false]}],
     ['bold', 'italic', 'underline', 'link'],
-    [{ list: 'ordered' }, { list: 'bullet' }],
+    [{list: 'ordered'}, {list: 'bullet'}],
     ['clean']
 ];
 
@@ -29,17 +29,18 @@ class FireTheme extends BaseTheme {
         this.buildPickers([].slice.call(toolbar.container.querySelectorAll('select')), icons);
         this.tooltip = new FireTooltip(this.quill, this.options.bounds);
         if (toolbar.container.querySelector('.ql-link')) {
-            this.quill.keyboard.addBinding({ key: 'K', shortKey: true }, function(range, context) {
+            this.quill.keyboard.addBinding({key: 'K', shortKey: true}, function (range, context) {
                 toolbar.handlers['link'].call(toolbar, !context.format.link);
             });
         }
     }
 }
+
 FireTheme.DEFAULTS = extend(true, {}, BaseTheme.DEFAULTS, {
     modules: {
         toolbar: {
             handlers: {
-                link: function(value) {
+                link: function (value) {
                     if (value) {
                         let range = this.quill.getSelection();
                         if (range == null || range.length == 0) return;
@@ -82,7 +83,7 @@ class FireTooltip extends BaseTooltip {
             console.log("aaaaaa");
             if (range == null) return;
             if (range.length === 0 && source === Emitter.sources.USER) {
-                let [link, offset] = this.quill.scroll.descendant(RdLink, range.index);
+                let [link, offset] = this.quill.scroll.descendant(RdLink, range.index - 1);
                 if (link != null) {
                     this.linkRange = new Range(range.index - offset, link.length());
                     let linkFormats = RdLink.formats(link.domNode);
@@ -112,6 +113,7 @@ class FireTooltip extends BaseTooltip {
         this.root.removeAttribute('data-mode');
     }
 }
+
 FireTooltip.TEMPLATE = [
     '<a class="ql-preview" target="_blank" href="about:blank"></a>',
     '<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL">',
