@@ -1,29 +1,31 @@
 import Quill from 'quill/core';
 
-import { AlignClass, AlignStyle } from 'quill/formats/align';
-import { DirectionAttribute, DirectionClass, DirectionStyle } from 'quill/formats/direction';
-import { IndentClass as Indent } from 'quill/formats/indent';
+import {AlignClass, AlignStyle} from 'quill/formats/align';
+import {DirectionAttribute, DirectionClass, DirectionStyle} from 'quill/formats/direction';
+import {IndentClass as Indent} from 'quill/formats/indent';
 
 import Blockquote from 'quill/formats/blockquote';
 import Header from 'quill/formats/header';
-import List, { ListItem } from 'quill/formats/list';
+import List, {ListItem} from 'quill/formats/list';
 
-import { BackgroundClass, BackgroundStyle } from 'quill/formats/background';
-import { ColorClass, ColorStyle } from 'quill/formats/color';
-import { FontClass, FontStyle } from 'quill/formats/font';
-import { SizeClass, SizeStyle } from 'quill/formats/size';
+import {BackgroundClass, BackgroundStyle} from 'quill/formats/background';
+import {ColorClass, ColorStyle} from 'quill/formats/color';
+import {FontClass, FontStyle} from 'quill/formats/font';
+import {SizeClass, SizeStyle} from 'quill/formats/size';
 
 import Bold from 'quill/formats/bold';
 import Italic from 'quill/formats/italic';
 import Link from 'quill/formats/link';
+import RdLink from './js/formats/rdLink';
 import Script from 'quill/formats/script';
 import Strike from 'quill/formats/strike';
 import Underline from 'quill/formats/underline';
 
 import Image from 'quill/formats/image';
 import Video from 'quill/formats/video';
+import RdImage from './js/formats/rdImage';
 
-import CodeBlock, { Code as InlineCode } from 'quill/formats/code';
+import CodeBlock, {Code as InlineCode} from 'quill/formats/code';
 
 import Formula from 'quill/modules/formula';
 import Syntax from 'quill/modules/syntax';
@@ -35,8 +37,9 @@ import ColorPicker from 'quill/ui/color-picker';
 import IconPicker from 'quill/ui/icon-picker';
 import Tooltip from 'quill/ui/tooltip';
 
-import BubbleTheme from 'quill/themes/bubble';
+// import BubbleTheme from 'quill/themes/bubble';
 import SnowTheme from 'quill/themes/snow';
+import FireTheme from "./js/themes/fire"
 
 
 Quill.register({
@@ -77,12 +80,15 @@ Quill.register({
     'formats/code': InlineCode,
     'formats/italic': Italic,
     'formats/link': Link,
+    'formats/rdLink': RdLink,
+
     'formats/script': Script,
     'formats/strike': Strike,
     'formats/underline': Underline,
 
     'formats/image': Image,
     'formats/video': Video,
+    'formats/rdImage': RdImage,
 
     'formats/list/item': ListItem,
 
@@ -90,8 +96,9 @@ Quill.register({
     'modules/syntax': Syntax,
     'modules/toolbar': Toolbar,
 
-    'themes/bubble': BubbleTheme,
+    // 'themes/bubble': BubbleTheme,
     'themes/snow': SnowTheme,
+    'themes/fire': FireTheme,
 
     'ui/icons': Icons,
     'ui/picker': Picker,
