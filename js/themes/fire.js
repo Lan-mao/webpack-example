@@ -84,7 +84,9 @@ class FireTooltip extends BaseTooltip {
             if (range == null) return;
             if (range.length === 0 && source === Emitter.sources.USER) {
                 let [link, offset] = this.quill.scroll.descendant(RdLink, range.index - 1);
+                offset = offset + 1;
                 if (link != null) {
+                    this.root.classList.remove("format-image");
                     this.linkRange = new Range(range.index - offset, link.length());
                     let linkFormats = RdLink.formats(link.domNode);
 
