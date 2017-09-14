@@ -37,6 +37,9 @@ import ColorPicker from 'quill/ui/color-picker';
 import IconPicker from 'quill/ui/icon-picker';
 import Tooltip from 'quill/ui/tooltip';
 
+
+import {RdFirstLineIndentClass as RdFirstLineIndent} from './js/formats/rdFirstLineIndent';
+
 // import BubbleTheme from 'quill/themes/bubble';
 import SnowTheme from 'quill/themes/snow';
 import FireTheme from "./js/themes/fire"
@@ -65,6 +68,8 @@ Quill.register({
     'formats/align': AlignClass,
     'formats/direction': DirectionClass,
     'formats/indent': Indent,
+
+    'formats/rdFirstLineIndent': RdFirstLineIndent,
 
     'formats/background': BackgroundStyle,
     'formats/color': ColorStyle,
