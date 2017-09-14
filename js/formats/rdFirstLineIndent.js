@@ -15,12 +15,10 @@ class RdFirstLineIndentAttributor extends Parchment.Attributor.Class {
     }
 
     canAdd(node, value) {
-        console.log("RdFirstLineIndentAttributor log..... canAdd");
         return super.canAdd(node, value) || super.canAdd(node, parseInt(value));
     }
 
     value(node) {
-        console.log("RdFirstLineIndentAttributor log..... value");
         return parseInt(super.value(node)) || undefined;  // Don't return NaN
     }
 }
