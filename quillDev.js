@@ -43,6 +43,7 @@ import {RdFirstLineIndentClass as RdFirstLineIndent} from './js/formats/rdFirstL
 // import BubbleTheme from 'quill/themes/bubble';
 import SnowTheme from 'quill/themes/snow';
 import FireTheme from "./js/themes/fire"
+import RdClipboard from "./js/modules/rdClipboard"
 
 
 Quill.register({
@@ -100,6 +101,7 @@ Quill.register({
     'modules/formula': Formula,
     'modules/syntax': Syntax,
     'modules/toolbar': Toolbar,
+    'modules/clipboard': RdClipboard,
 
     // 'themes/bubble': BubbleTheme,
     'themes/snow': SnowTheme,
