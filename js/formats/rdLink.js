@@ -45,7 +45,6 @@ class Link extends Inline {
     }
 
     format(name, value) {
-        console.log("rdLink, without href attributes");
 
         if (ATTRIBUTES.indexOf(name) > -1) {
             if (value) {
