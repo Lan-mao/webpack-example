@@ -16,14 +16,14 @@ import {SizeClass, SizeStyle} from 'quill/formats/size';
 import Bold from 'quill/formats/bold';
 import Italic from 'quill/formats/italic';
 import Link from 'quill/formats/link';
-// import RdLink from './js/formats/rdLink';
+import RdLink from './js/formats/rdLink';
 import Script from 'quill/formats/script';
 import Strike from 'quill/formats/strike';
 import Underline from 'quill/formats/underline';
 
 import Image from 'quill/formats/image';
 import Video from 'quill/formats/video';
-import RdImage from './js/formats/rdImage';
+// import RdImage from './js/formats/rdImage';
 
 import CodeBlock, {Code as InlineCode} from 'quill/formats/code';
 
@@ -86,7 +86,7 @@ Quill.register({
     'formats/code': InlineCode,
     'formats/italic': Italic,
     'formats/link': Link,
-    // 'formats/rdLink': RdLink,
+    'formats/rdLink': RdLink,
 
     'formats/script': Script,
     'formats/strike': Strike,
@@ -94,7 +94,7 @@ Quill.register({
 
     'formats/image': Image,
     'formats/video': Video,
-    'formats/rdImage': RdImage,
+    // 'formats/rdImage': RdImage,
 
     'formats/list/item': ListItem,
 

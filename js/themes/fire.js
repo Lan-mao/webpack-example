@@ -9,7 +9,7 @@ import icons from 'quill/ui/icons';
 
 const TOOLBAR_CONFIG = [
     [{header: ['1', '2', '3', false]}],
-    ['bold', 'italic', 'underline', 'link'],
+    ['bold', 'italic', 'underline', 'rdLink'],
     [{list: 'ordered'}, {list: 'bullet'}],
     ['clean']
 ];
@@ -30,7 +30,7 @@ class FireTheme extends BaseTheme {
         this.tooltip = new FireTooltip(this.quill, this.options.bounds);
         if (toolbar.container.querySelector('.ql-link')) {
             this.quill.keyboard.addBinding({key: 'K', shortKey: true}, function (range, context) {
-                toolbar.handlers['link'].call(toolbar, !context.format.link);
+                toolbar.handlers['rdLink'].call(toolbar, !context.format.link);
             });
         }
     }
@@ -49,9 +49,9 @@ FireTheme.DEFAULTS = extend(true, {}, BaseTheme.DEFAULTS, {
                             preview = 'mailto:' + preview;
                         }
                         let tooltip = this.quill.theme.tooltip;
-                        tooltip.edit('link', preview);
+                        tooltip.edit('rdLink', preview);
                     } else {
-                        this.quill.format('link', false);
+                        this.quill.format('rdLink', false);
                     }
                 }
             }
@@ -73,7 +73,7 @@ class FireTooltip extends BaseTooltip {
             if (this.linkRange != null) {
                 let range = this.linkRange;
                 this.restoreFocus();
-                this.quill.formatText(range, 'link', false, Emitter.sources.USER);
+                this.quill.formatText(range, 'rdLink', false, Emitter.sources.USER);
                 delete this.linkRange;
             }
             event.preventDefault();

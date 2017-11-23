@@ -6,7 +6,7 @@ const ATTRIBUTES = [
     "href"
 ];
 
-class Link extends Inline {
+class RdLink extends Inline {
     static create(value) {
         let node = super.create(value);
 
@@ -62,10 +62,10 @@ class Link extends Inline {
     }
 }
 
-Link.blotName = 'link';
-Link.tagName = 'A';
-Link.SANITIZED_URL = 'about:blank';
-Link.PROTOCOL_WHITELIST = ['http', 'https', 'mailto', 'tel'];
+RdLink.blotName = 'rdLink';
+RdLink.tagName = 'A';
+RdLink.SANITIZED_URL = 'about:blank';
+RdLink.PROTOCOL_WHITELIST = ['http', 'https', 'mailto', 'tel'];
 
 
 function sanitize(url, protocols) {
@@ -76,4 +76,4 @@ function sanitize(url, protocols) {
 }
 
 
-export {Link as default, sanitize};
+export {RdLink as default, sanitize};
